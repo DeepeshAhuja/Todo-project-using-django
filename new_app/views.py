@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 from new_app.models import TodoList
 
-# Create your views here.
 def home(request):
     
     tasks = TodoList.objects.all()
@@ -11,9 +10,9 @@ def home(request):
         priority = request.POST.get('priority')
         task = TodoList(task_name=new_task, priority=priority)
         task.save()
-    
+
     context = {'tasks': tasks}
-    
+
     return render(request, 'index.html', context)
 
 def delete(request, pk):
